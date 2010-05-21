@@ -8,7 +8,7 @@ $(function() {
 
     $('#message').clearDrink();
 
-    var noun = $('#noun').attr('value').toLowerCase().replace(/[^a-z]+/g, '');
+    var noun = $('#noun').attr('value').toLowerCase().replace(/[^a-z0-9]+/g, '');
 
     if (noun == '') {
       $('#message').text('I need some letters.');
