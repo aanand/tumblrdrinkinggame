@@ -1,4 +1,4 @@
-var mustExist = true;
+var mustExist = false;
 
 $(function() {
   var initialMessage = $('#message').text();
