@@ -3,6 +3,7 @@
 %html
   %head
     %title Tumblr Drinking Game
+    %meta{ :name => "viewport", :content => "width = 620" }
     %link{ :rel => 'stylesheet', :href => 'stylesheet.css' }
     %script{ :type => 'text/javascript', :src => 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js' }
     %script{ :type => 'text/javascript', :src => 'application.js' }
@@ -12,7 +13,8 @@
 
     #message Type a noun and press Enter.
 
-    %input#noun{ :type => 'text', :value => 'bats' }
+    %form
+      %input#noun{ :type => 'text', :value => 'bats' }
 
     #history{ :style => 'display: none' }
       %h2 Turn history

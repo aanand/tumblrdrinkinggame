@@ -3,8 +3,8 @@ var mustExist = false;
 $(function() {
   var initialMessage = $('#message').text();
 
-  $('#noun').keypress(function(event) {
-    if (event.keyCode != 13) return;
+  $('form').submit(function(event) {
+    event.preventDefault();
 
     $('#message').clearDrink();
 
@@ -48,7 +48,7 @@ $(function() {
 
       'json'
     );
-  }).focus();
+  });
 
   $('#must-exist').click(function(event){
     event.preventDefault();
@@ -80,5 +80,7 @@ $(function() {
   $.fn.clearDrink = function() {
     return this.removeClass('drink').removeClass('no-drink');
   }
+
+  $('#noun').focus();
 });
 
