@@ -4,6 +4,7 @@ require 'json'
 require 'net/http'
 
 get '/' do
+  headers['Cache-Control'] = 'public; max-age=300'
   haml :index
 end
 
@@ -21,6 +22,7 @@ end
 
 get '/stylesheet.css' do
   headers['Content-Type'] = 'text/css; charset=utf-8'
+  headers['Cache-Control'] = 'public; max-age=300'
   sass :stylesheet
 end
 
