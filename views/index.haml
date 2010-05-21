@@ -1,0 +1,26 @@
+!!!
+
+%html
+  %head
+    %title Tumblr Drinking Game
+    %link{ :rel => 'stylesheet', :href => 'stylesheet.css' }
+    %script{ :type => 'text/javascript', :src => 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js' }
+    %script{ :type => 'text/javascript', :src => 'application.js' }
+
+  %body
+    %h1 Tumblr Drinking Game
+
+    #message Type a noun and press Enter.
+
+    %input#noun{ :type => 'text', :value => 'bats' }
+
+    #history{ :style => 'display: none' }
+      %h2 Turn history
+
+      %ul
+
+    #new-game{ :style => 'display: none' }
+      %h2
+        New game:
+        %a#must-exist{ :href => '#'} site must exist
+        %a#must-not-exist{ :href => '#' } site must not exist
