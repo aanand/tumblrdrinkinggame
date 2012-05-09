@@ -9,23 +9,29 @@
     %script{ :type => 'text/javascript', :src => 'application.js' }
 
   %body
-    %h1 Tumblr Drinking Game
+    #container
+      #game
+        %h1 Tumblr Drinking Game
 
-    #message Type a noun and press Enter.
+        #message Type a noun and press Enter.
 
-    %form
-      %input#noun{ :type => 'text', :value => 'bats' }
+        %form
+          %input#noun{ :type => 'text', :value => 'bats' }
 
-    #history{ :style => 'display: none' }
-      %h2 Turn history
+        #history{ :style => 'display: none' }
+          %h2 Turn history
 
-      %ul
+          %ul
 
-    #new-game{ :style => 'display: none' }
-      %h2
-        New game:
-        %a#must-exist{ :href => '#' } optimistic
-        %a#must-not-exist{ :href => '#' } pessimistic
+        #new-game{ :style => 'display: none' }
+          %h2
+            New game:
+            %a#must-exist{ :href => '#' } optimistic
+            %a#must-not-exist{ :href => '#' } pessimistic
+
+      #credits
+        Made by
+        %a{ :href => 'http://aanandprasad.com' } Aanand Prasad
 
     %script{ :type => 'text/javascript' }
       :plain

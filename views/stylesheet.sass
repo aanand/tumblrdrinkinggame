@@ -7,11 +7,15 @@ html
     background-image: url(background-small.jpg)
 
 body
-  background: white
+  font-family: "Lucida Grande", sans-serif
+
+#container
   width: 600px
   margin: 100px auto
+
+#game
+  background: white
   text-align: center
-  font-family: "Lucida Grande", sans-serif
   -webkit-box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.5)
   -moz-box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.5)
 
@@ -69,6 +73,7 @@ h2
     background: #ff9
     color: #cc6
     font-size: 0.8em
+    margin-bottom: 0
 
     a
       color: #cc6
@@ -78,6 +83,14 @@ h2
         color: #ff9
         background: #cc6
         text-decoration: none
+
+#credits
+  padding: 4px
+  font-size: 0.7em
+  text-align: right
+
+  &, *
+    color: rgba(0, 0, 0, 0.3)
 
 .drink
   color: #c66
