@@ -50,9 +50,7 @@
 
         #new-game{ 'data-bind' => 'visible: history().length > 0' }
           %h2
-            New game:
-            %a#must-exist{ 'href' => '#', 'data-bind' => 'click: function() { newGame(true) }' } optimistic
-            %a#must-not-exist{ 'href' => '#', 'data-bind' => 'click: function() { newGame(false) }' } pessimistic
+            %a{ 'href' => '#', 'data-bind' => 'click: function() { newGame(false) }' } New game?
 
       #credits
         Made by
