@@ -1,86 +1,49 @@
-var mustExist = false;
+function Game() {
+  var game = this;
 
-$(function() {
-  var initialMessage = $('#message').text();
+  this.status      = ko.observable('initial');
+  this.mustExist   = ko.observable(false);
+  this.history     = ko.observableArray();
+  this.lastResult  = ko.observable();
+  this.shouldDrink = ko.observable();
 
-  $('form').submit(function(event) {
-    event.preventDefault();
-
-    $('#message').clearDrink();
-
+  this.checkNoun = function(form) {
     var noun = $('#noun').attr('value').toLowerCase().replace(/[^a-z0-9]+/g, '');
 
     if (noun == '') {
-      $('#message').text('I need some letters.');
+      this.status('noNoun');
       return;
     }
 
     $('#noun').attr('value', noun).focus();
+    this.status('checking');
+    $.post('/', { noun: noun }, function(json) { game.handleResult(json) }, 'json');
+  },
 
-    $('#message').text('Checking...');
+  this.handleResult = function(result) {
+    var shouldDrink = result.exists != this.mustExist();
+    result.cssClass = shouldDrink ? "drink" : "no-drink";
 
-    $.post(
-      '/',
-
-      { noun: noun },
-
-      function(json) {
-        var drink = json.exists != mustExist;
-
-        $('#message').text('');
-
-        if (json.exists) {
-          $('#message').append($('<a/>').attr('href', 'http://' + json.domain).attr('target', '_blank').text(json.domain));
-          $('#message').append(" exists.");
-        } else {
-          $('#message').append(json.domain);
-          $('#message').append(" does not exist.");
-        }
-
-        $('#message').append(drink ? " Drink!" : " Do not drink.");
-        $('#message').toggleDrink(drink);
-
-        var li = $('<li>').text(json.noun).toggleDrink(drink);
-
-        $('#history').show().find('ul').append(li);
-        $('#new-game').show();
-      },
-
-      'json'
-    );
-  });
-
-  $('#must-exist').click(function(event){
-    event.preventDefault();
-    mustExist = true;
-    newGame();
-  });
-
-  $('#must-not-exist').click(function(event){
-    event.preventDefault();
-    mustExist = false;
-    newGame();
-  });
-
-  function newGame() {
-    $('#history').hide().find('ul').empty();
-    $('#message').clearDrink().text(initialMessage);
-    $('#new-game').hide();
-    $('#noun').attr('value', '').focus();
+    this.lastResult(result);
+    this.history.push(result);
+    this.shouldDrink(shouldDrink);
+    this.status('checked');
   }
 
-  $.fn.toggleDrink = function(drink){
-    if (drink) {
-      return this.removeClass('no-drink').addClass('drink');
-    } else {
-      return this.removeClass('drink').addClass('no-drink');
-    }
-  }
+  this.newGame = function(mustExist) {
+    console.log('hi');
 
-  $.fn.clearDrink = function() {
-    return this.removeClass('drink').removeClass('no-drink');
+    this.status('initial');
+    this.mustExist(mustExist);
+    this.history([]);
+    this.lastResult(null);
+    this.shouldDrink(null);
   }
+};
 
+$(function() {
+  window.TDG = { game: new Game() };
+  ko.applyBindings(TDG.game);
   $('#noun').focus();
 });
 

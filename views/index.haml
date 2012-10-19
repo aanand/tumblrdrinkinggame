@@ -5,7 +5,8 @@
     %title Tumblr Drinking Game
     %meta{ :name => "viewport", :content => "width = device-width" }
     %link{ :rel => 'stylesheet', :href => 'stylesheet.css' }
-    %script{ :type => 'text/javascript', :src => 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js' }
+    %script{ :type => 'text/javascript', :src => '//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.2/jquery.min.js' }
+    %script{ :type => 'text/javascript', :src => '//cdnjs.cloudflare.com/ajax/libs/knockout/2.1.0/knockout-min.js' }
     %script{ :type => 'text/javascript', :src => 'application.js' }
 
   %body
@@ -13,9 +14,7 @@
       #game
         %h1 Tumblr Drinking Game
 
-        #message Type a noun and press Enter.
-
-        %form
+        %form{ 'data-bind' => 'submit: checkNoun' }
           %label
             ~ "fuckyeah"
             %input#noun{ :type => 'text', :value => 'bats' }>
@@ -23,16 +22,37 @@
 
           %button{ :type => 'submit' } Check
 
-        #history{ :style => 'display: none' }
+        #message{ 'data-bind' => 'visible: (status !== "initial"), attr: { class: lastResult() && lastResult().cssClass }' }
+          %span{ 'data-bind' => 'if: (status() === "checking")' } Checking...
+
+          %span{ 'data-bind' => 'if: (status() === "checked")' }
+            %span{ 'data-bind' => 'if: lastResult().exists' }
+              %a{ 'data-bind' => 'text: lastResult().domain, attr: { href: "http://" + lastResult().domain }', target: '_blank' }
+              exists.
+
+            %span{ 'data-bind' => 'if: !lastResult().exists' }
+              %span{ 'data-bind' => 'text: lastResult().domain' }
+              does not exist.
+
+            %span{ 'data-bind' => 'if: shouldDrink()' }
+              Drink!
+
+            %span{ 'data-bind' => 'if: !shouldDrink()' }
+              Do not drink.
+
+        #history{ 'data-bind' => 'visible: history().length > 0' }
           %h2 Turn history
 
           %ul
+            / ko foreach: history
+            %li{ 'data-bind' => 'text: noun, attr: { class: cssClass }' }
+            / /ko
 
-        #new-game{ :style => 'display: none' }
+        #new-game{ 'data-bind' => 'visible: history().length > 0' }
           %h2
             New game:
-            %a#must-exist{ :href => '#' } optimistic
-            %a#must-not-exist{ :href => '#' } pessimistic
+            %a#must-exist{ 'href' => '#', 'data-bind' => 'click: function() { newGame(true) }' } optimistic
+            %a#must-not-exist{ 'href' => '#', 'data-bind' => 'click: function() { newGame(false) }' } pessimistic
 
       #credits
         Made by
