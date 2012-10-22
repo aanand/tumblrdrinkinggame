@@ -43,6 +43,19 @@ function GameView(game) {
   this.history = ko.computed(function() {
     return game.history().map(function(result) {
       result.cssClass = result.shouldDrink ? "drink" : "no-drink";
+
+      function wrapInLink(text) {
+        var element = result.exists ? $("<a/>").text(text).attr({href: "http://" + result.domain, target: '_blank'})
+                                    : $("<span/>").text(text);
+
+        return $("<div/>").append(element).html();
+      }
+
+      result.fullLabelHTML  = wrapInLink(result.domain);
+      result.shortLabelHTML = wrapInLink(result.noun);
+
+      result.existsLabel = result.exists ? 'Exists' : 'Does not exist';
+
       return result;
     })
   });

@@ -27,7 +27,7 @@
 
           %span{ 'data-bind' => 'if: hasChecked' }
             %span{ 'data-bind' => 'if: lastResult().exists' }
-              %a{ 'data-bind' => 'text: lastResult().domain, attr: { href: "http://" + lastResult().domain }', target: '_blank' }
+              %span{ 'data-bind' => 'html: lastResult().fullLabelHTML' }
               exists.
 
             %span{ 'data-bind' => 'if: !lastResult().exists' }
@@ -45,7 +45,9 @@
 
           %ul
             / ko foreach: history
-            %li{ 'data-bind' => 'text: noun, attr: { class: cssClass }' }
+            %li{ 'data-bind' => 'attr: { class: cssClass }' }
+              .exists{ 'data-bind' => 'text: existsLabel'}
+              .label{ 'data-bind' => 'html: shortLabelHTML' }
             / /ko
 
         #new-game{ 'data-bind' => 'visible: showNewGame' }

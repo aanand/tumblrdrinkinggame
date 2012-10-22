@@ -4,17 +4,23 @@
   +linear-gradient($angle, $background-color, $background-color 20%, $stripe-color 25%, $stripe-color 45%, $background-color 50%, $background-color 70%, $stripe-color 75%, $stripe-color 95%, $background-color 100%, $fallback: $background-color)
   background-size: $size $size
 
+$text-color: #444
+
 html, body
   background: #eee
   margin: 0
   padding: 0
+
+html, body
   height: 100%
+
+#container
+  min-height: 100%
 
 #container
   max-width: 600px
   margin: 0 auto
   background: white
-  height: 100%
   +box-shadow(0 0 20px rgba(0, 0, 0, 0.25))
 
 #game
@@ -24,23 +30,25 @@ body, input, button
   font-family: "Helvetica Neue", helvetica, sans-serif
   font-weight: 300
   text-transform: uppercase
-  color: #444
+  color: $text-color
 
 h1, h2
+  margin: 0
   padding: 8px
   color: white
   text-shadow: 0 2px 4px rgba(0, 0, 0, .5)
   font-weight: 500
 
 h1
-  margin: 0
   +stripes(#26c, #27e)
 
 h2
   font-size: 1.1em
   
 #message
-  padding: 12px 0
+  padding: 12px
+  font-size: 16pt
+  overflow: hidden
 
   &.drink, &.no-drink
     font-weight: bold
@@ -56,6 +64,12 @@ form
 
   input
     width: 140px
+    border: none
+    outline: none
+    border-bottom: 1px solid $text-color
+
+    &:focus
+      background: #eee
 
   button
     color: white
@@ -66,24 +80,36 @@ form
     +box-shadow(1px 1px 2px rgba(0, 0, 0, 0.25))
 
 #history
+  margin-top: 16px
+
   h2
-    +stripes(#a46, #b57)
+    +stripes(#6a4, #7b5)
   
   ul
     margin: 0
-    padding: 0 12px
+    padding: 0
     list-style: none
     text-align: left
 
     li
-      display: inline
+      border-top: 1px solid #ccc
+      padding: 12px
+      font-size: 14pt
+      position: relative
 
-      &:before
-        content: ", "
-        color: #ccc
+      &:first-child
+        border-top: none
 
-      &:first-child:before
-        content: ""
+      a
+        color: inherit
+
+      .label
+        overflow: hidden
+
+      .exists
+        float: right
+        padding-left: 20px
+        background: white
 
 #new-game
   h2
@@ -103,8 +129,8 @@ form
     color: rgba(0, 0, 0, 0.3)
 
 .drink
-  color: #c66
+  color: #e66
 
 .no-drink
-  color: #9c6
+  color: #aaa
 
