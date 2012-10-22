@@ -90,6 +90,7 @@ function GameView(game) {
   });
 
   this.showNewGame = this.showHistory;
+  this.showCredits = this.showHistory;
 }
 
 $(function() {
