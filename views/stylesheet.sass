@@ -1,32 +1,40 @@
-html
-  background: url(background.jpg) top center fixed
+@import 'bourbon/bourbon'
 
-// iPhone
-@media only screen and (max-device-width: 480px)
-  html
-    background-image: url(background-small.jpg)
+=stripes($background-color, $stripe-color, $angle: -45deg, $size: 12px)
+  +linear-gradient($angle, $background-color, $background-color 20%, $stripe-color 25%, $stripe-color 45%, $background-color 50%, $background-color 70%, $stripe-color 75%, $stripe-color 95%, $background-color 100%, $fallback: $background-color)
+  background-size: $size $size
 
-body, input, button
-  font-family: helvetica, sans-serif
-  text-transform: uppercase
+html, body
+  background: #eee
+  margin: 0
+  padding: 0
+  height: 100%
 
 #container
-  width: 600px
-  margin: 100px auto
+  max-width: 600px
+  margin: 0 auto
+  background: white
+  height: 100%
+  +box-shadow(0 0 20px rgba(0, 0, 0, 0.25))
 
 #game
-  background: white
   text-align: center
-  -webkit-box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.5)
-  -moz-box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.5)
+
+body, input, button
+  font-family: "Helvetica Neue", helvetica, sans-serif
+  font-weight: 300
+  text-transform: uppercase
+  color: #444
 
 h1, h2
   padding: 8px
+  color: white
+  text-shadow: 0 2px 4px rgba(0, 0, 0, .5)
+  font-weight: 500
 
 h1
   margin: 0
-  background: #f99
-  color: white
+  +stripes(#26c, #27e)
 
 h2
   font-size: 1.1em
@@ -44,15 +52,22 @@ form
   padding: 20px 0
 
   &, input, button
-    font-size: 18pt
+    font-size: 16pt
 
   input
-    width: 160px
+    width: 140px
+
+  button
+    color: white
+    font-weight: 500
+    border: none
+    padding: 4px 8px 2px
+    +linear-gradient(#27e, #26c)
+    +box-shadow(1px 1px 2px rgba(0, 0, 0, 0.25))
 
 #history
   h2
-    background: #b9f
-    color: #96c
+    +stripes(#a46, #b57)
   
   ul
     margin: 0
@@ -72,18 +87,12 @@ form
 
 #new-game
   h2
-    background: #ff9
-    color: #cc6
+    +stripes(#ba5, #dc4)
     margin-bottom: 0
 
     a
-      color: #cc6
+      color: inherit
       padding: 0 3px
-
-      &:hover
-        color: #ff9
-        background: #cc6
-        text-decoration: none
 
 #credits
   padding: 4px

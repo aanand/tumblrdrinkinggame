@@ -1,7 +1,9 @@
 require 'sinatra'
 require 'haml'
+require 'sass'
 require 'json'
 require 'net/http'
+require './views/bourbon/lib/bourbon'
 
 get '/' do
   headers['Cache-Control'] = 'public; max-age=300'
