@@ -97,6 +97,14 @@ function GameView(game) {
 
   this.showNewGame = this.showHistory;
   this.showCredits = this.showHistory;
+
+  this.newGame = function(mustExist) {
+    game.newGame(mustExist);
+
+    var field = $('#noun');
+    field.attr('value', '');
+    if (!Modernizr.touch) field.focus();
+  }
 }
 
 $(function() {
