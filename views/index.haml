@@ -27,12 +27,10 @@
 
           %span{ 'data-bind' => 'if: hasChecked' }
             %span{ 'data-bind' => 'if: lastResult().exists' }
-              %span{ 'data-bind' => 'html: lastResult().fullLabelHTML' }
-              exists.
+              %span{ 'data-bind' => 'html: lastResult().wrapInLink("It exists.")' }
 
             %span{ 'data-bind' => 'if: !lastResult().exists' }
-              %span{ 'data-bind' => 'text: lastResult().domain' }
-              does not exist.
+              %span{ 'data-bind' => 'html: "It doesn&rsquo;t exist."' }
 
             %span{ 'data-bind' => 'if: shouldDrinkNow()' }
               Drink!
@@ -46,7 +44,7 @@
           %ul{ 'data-bind' => 'foreach: history' }
             %li{ 'data-bind' => 'attr: { class: cssClass }' }
               .exists{ 'data-bind' => 'text: existsLabel'}
-              .label{ 'data-bind' => 'html: shortLabelHTML' }
+              .label{ 'data-bind' => 'html: wrapInLink(noun)' }
 
         #new-game{ 'data-bind' => 'visible: showNewGame' }
           %h2
