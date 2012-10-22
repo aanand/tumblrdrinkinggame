@@ -35,8 +35,17 @@ function GameView(game) {
   this.game = game;
 
   this.checkNoun = function() {
-    var noun = $('#noun').attr('value').toLowerCase().replace(/[^a-z0-9]+/g, '');
-    $('#noun').attr('value', noun);
+    var field = $('#noun');
+    var noun = field.attr('value').toLowerCase().replace(/[^a-z0-9]+/g, '');
+
+    field.attr('value', noun);
+
+    if (Modernizr.touch) {
+      field.blur();
+    } else {
+      field.focus();
+    }
+
     this.game.checkNoun(noun);
   }
 
