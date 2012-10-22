@@ -7,43 +7,81 @@ function Game() {
   this.lastResult  = ko.observable();
   this.shouldDrink = ko.observable();
 
-  this.checkNoun = function(form) {
-    var noun = $('#noun').attr('value').toLowerCase().replace(/[^a-z0-9]+/g, '');
-
+  this.checkNoun = function(noun) {
     if (noun == '') {
       this.status('noNoun');
       return;
     }
 
-    $('#noun').attr('value', noun).focus();
     this.status('checking');
     $.post('/', { noun: noun }, function(json) { game.handleResult(json) }, 'json');
   },
 
   this.handleResult = function(result) {
-    var shouldDrink = result.exists != this.mustExist();
-    result.cssClass = shouldDrink ? "drink" : "no-drink";
-
-    this.lastResult(result);
-    this.history.push(result);
-    this.shouldDrink(shouldDrink);
+    result.shouldDrink = (result.exists != this.mustExist());
+    this.history.unshift(result);
     this.status('checked');
   }
 
   this.newGame = function(mustExist) {
-    console.log('hi');
-
     this.status('initial');
     this.mustExist(mustExist);
     this.history([]);
-    this.lastResult(null);
-    this.shouldDrink(null);
   }
 };
 
+function GameView(game) {
+  var view = this;
+  this.game = game;
+
+  this.checkNoun = function() {
+    var noun = $('#noun').attr('value').toLowerCase().replace(/[^a-z0-9]+/g, '');
+    $('#noun').attr('value', noun).focus();
+    this.game.checkNoun(noun);
+  }
+
+  this.history = ko.computed(function() {
+    return game.history().map(function(result) {
+      result.cssClass = result.shouldDrink ? "drink" : "no-drink";
+      return result;
+    })
+  });
+
+  this.lastResult = ko.computed(function() {
+    return view.history();
+  });
+
+  this.showMessage = ko.computed(function() {
+    return game.status() !== "initial";
+  });
+
+  this.isChecking = ko.computed(function() {
+    return game.status() === "checking";
+  });
+
+  this.hasChecked = ko.computed(function() {
+    return game.status() === "checked";
+  });
+
+  this.messageClass = ko.computed(function() {
+    return view.lastResult() && view.lastResult().cssClass;
+  });
+
+  this.shouldDrinkNow = ko.computed(function() {
+    var lastResult = view.lastResult();
+    return lastResult && lastResult.shouldDrink;
+  });
+
+  this.showHistory = ko.computed(function() {
+    return view.history().length > 0;
+  });
+
+  this.showNewGame = this.showHistory;
+}
+
 $(function() {
-  window.TDG = { game: new Game() };
-  ko.applyBindings(TDG.game);
+  window.TDG = { view: new GameView(new Game()) };
+  ko.applyBindings(TDG.view);
   $('#noun').focus();
 });
 
