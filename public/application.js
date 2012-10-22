@@ -48,7 +48,7 @@ function GameView(game) {
   });
 
   this.lastResult = ko.computed(function() {
-    return view.history();
+    return view.history()[0];
   });
 
   this.showMessage = ko.computed(function() {
