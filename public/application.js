@@ -100,10 +100,7 @@ function GameView(game) {
 
   this.newGame = function(mustExist) {
     game.newGame(mustExist);
-
-    var field = $('#noun');
-    field.attr('value', '');
-    if (!Modernizr.touch) field.focus();
+    $('#noun').attr('value', '').focus();
   }
 }
 
