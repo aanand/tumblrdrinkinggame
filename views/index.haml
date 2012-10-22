@@ -33,13 +33,11 @@
             %span{ 'data-bind' => 'if: !lastResult().exists' }
               %span{ 'data-bind' => 'html: "It doesn&rsquo;t exist."' }
 
-            &nbsp;
-
             %span{ 'data-bind' => 'if: shouldDrinkNow()' }
-              Drink!
+              &nbsp;Drink!
 
             %span{ 'data-bind' => 'if: !shouldDrinkNow()' }
-              Do not drink.
+              &nbsp;Do not drink.
 
         #history{ 'data-bind' => 'visible: showHistory' }
           %h2 Turn history
