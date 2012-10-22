@@ -43,11 +43,10 @@
         #history{ 'data-bind' => 'visible: showHistory' }
           %h2 Turn history
 
-          %ul
-            %li{ 'data-bind' => 'foreach: history' }
-              %div{ 'data-bind' => 'attr: { class: cssClass }' }
-                .exists{ 'data-bind' => 'text: existsLabel'}
-                .label{ 'data-bind' => 'html: shortLabelHTML' }
+          %ul{ 'data-bind' => 'foreach: history' }
+            %li{ 'data-bind' => 'attr: { class: cssClass }' }
+              .exists{ 'data-bind' => 'text: existsLabel'}
+              .label{ 'data-bind' => 'html: shortLabelHTML' }
 
         #new-game{ 'data-bind' => 'visible: showNewGame' }
           %h2
