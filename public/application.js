@@ -36,7 +36,7 @@ function GameView(game) {
 
   this.checkNoun = function() {
     var noun = $('#noun').attr('value').toLowerCase().replace(/[^a-z0-9]+/g, '');
-    $('#noun').attr('value', noun).focus();
+    $('#noun').attr('value', noun);
     this.game.checkNoun(noun);
   }
 
