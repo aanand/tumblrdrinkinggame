@@ -136,7 +136,7 @@ function GameView(game) {
   });
 
   this.messageClass = ko.computed(function() {
-    return view.lastResult() && view.lastResult().cssClass;
+    return view.hasChecked() && view.lastResult().cssClass;
   });
 
   this.shouldDrinkNow = ko.computed(function() {
