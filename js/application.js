@@ -78,6 +78,11 @@ function GameView(game) {
   var view = this;
   this.game = game;
 
+  this.init = function() {
+    ko.applyBindings(this);
+    $('#noun').focus();
+  }
+
   this.checkNoun = function() {
     var field = $('#noun');
     var noun = field.attr('value').toLowerCase().replace(/[^a-z0-9]+/g, '');
@@ -152,14 +157,8 @@ function GameView(game) {
   }
 }
 
-$(function() {
-  window.TDG = {};
+window.TDG = {};
 
-  TDG.tumblr = new Tumblr({apiKey: 'xPUCfnbvVOt7F7fevsMROBXTQGOv0lOPdV0ZJNjIbkbdyg8yQp'});
-  TDG.game   = new Game(TDG.tumblr);
-  TDG.view   = new GameView(TDG.game);
-
-  ko.applyBindings(TDG.view);
-  $('#noun').focus();
-});
-
+TDG.tumblr = new Tumblr({apiKey: 'xPUCfnbvVOt7F7fevsMROBXTQGOv0lOPdV0ZJNjIbkbdyg8yQp'});
+TDG.game   = new Game(TDG.tumblr);
+TDG.view   = new GameView(TDG.game);

@@ -11,7 +11,7 @@ html
     script type='text/javascript' src='js/application.js' 
 
   body
-    #container
+    #container style="display: none" data-bind="visible: true"
       #game
         h1 Tumblr Drinking Game
 
@@ -63,6 +63,8 @@ html
         | . Please enjoy Tumblr responsibly.
 
     javascript:
+      TDG.view.init();
+
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-16551991-1']);
       _gaq.push(['_trackPageview']);
