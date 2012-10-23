@@ -3,21 +3,17 @@ GEM
   specs:
     bourbon (2.1.1)
       sass (>= 3.1)
-    haml (3.1.4)
-    rack (1.4.1)
-    rack-protection (1.2.0)
-      rack
+    filewatcher (0.1.5)
+      trollop (>= 1.16.2)
+    haml (3.1.7)
     sass (3.2.1)
-    sinatra (1.3.2)
-      rack (~> 1.3, >= 1.3.6)
-      rack-protection (~> 1.2)
-      tilt (~> 1.3, >= 1.3.3)
-    tilt (1.3.3)
+    trollop (2.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   bourbon
+  filewatcher
   haml
-  sinatra
+  sass
