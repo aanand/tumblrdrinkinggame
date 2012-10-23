@@ -122,9 +122,9 @@ form {
     padding: 0 3px; }
 
 #credits {
-  padding: 4px;
+  padding: 16px 0 4px;
   font-size: 0.7em;
-  text-align: right; }
+  text-align: center; }
   #credits, #credits * {
     color: rgba(0, 0, 0, 0.3); }
 
