@@ -13,8 +13,8 @@ html, body {
   max-width: 600px;
   margin: 0 auto;
   background: white;
-  -webkit-box-shadow: compact(0 0 20px rgba(0, 0, 0, 0.25), false, false, false, false, false, false, false, false);
-  box-shadow: compact(0 0 20px rgba(0, 0, 0, 0.25), false, false, false, false, false, false, false, false); }
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25); }
 
 #game {
   text-align: center; }
@@ -32,12 +32,12 @@ h1, h2 {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   font-weight: 500;
   background-color: #2266cc;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(100%, compact(#2266cc, #2266cc 20%, #2277ee 25%, #2277ee 45%, #2266cc 50%, #2266cc 70%, #2277ee 75%, #2277ee 95%, #2266cc 100%, false)));
-  background-image: -webkit-linear-gradient(-45deg, compact(#2266cc, #2266cc 20%, #2277ee 25%, #2277ee 45%, #2266cc 50%, #2266cc 70%, #2277ee 75%, #2277ee 95%, #2266cc 100%, false));
-  background-image: -moz-linear-gradient(-45deg, compact(#2266cc, #2266cc 20%, #2277ee 25%, #2277ee 45%, #2266cc 50%, #2266cc 70%, #2277ee 75%, #2277ee 95%, #2266cc 100%, false));
-  background-image: -ms-linear-gradient(-45deg, compact(#2266cc, #2266cc 20%, #2277ee 25%, #2277ee 45%, #2266cc 50%, #2266cc 70%, #2277ee 75%, #2277ee 95%, #2266cc 100%, false));
-  background-image: -o-linear-gradient(-45deg, compact(#2266cc, #2266cc 20%, #2277ee 25%, #2277ee 45%, #2266cc 50%, #2266cc 70%, #2277ee 75%, #2277ee 95%, #2266cc 100%, false));
-  background-image: linear-gradient(-45deg, compact(#2266cc, #2266cc 20%, #2277ee 25%, #2277ee 45%, #2266cc 50%, #2266cc 70%, #2277ee 75%, #2277ee 95%, #2266cc 100%, false));
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2266cc), color-stop(20%, #2266cc), color-stop(25%, #2277ee), color-stop(45%, #2277ee), color-stop(50%, #2266cc), color-stop(70%, #2266cc), color-stop(75%, #2277ee), color-stop(95%, #2277ee), color-stop(100%, #2266cc));
+  background-image: -webkit-linear-gradient(-45deg, #2266cc, #2266cc 20%, #2277ee 25%, #2277ee 45%, #2266cc 50%, #2266cc 70%, #2277ee 75%, #2277ee 95%, #2266cc 100%);
+  background-image: -moz-linear-gradient(-45deg, #2266cc, #2266cc 20%, #2277ee 25%, #2277ee 45%, #2266cc 50%, #2266cc 70%, #2277ee 75%, #2277ee 95%, #2266cc 100%);
+  background-image: -ms-linear-gradient(-45deg, #2266cc, #2266cc 20%, #2277ee 25%, #2277ee 45%, #2266cc 50%, #2266cc 70%, #2277ee 75%, #2277ee 95%, #2266cc 100%);
+  background-image: -o-linear-gradient(-45deg, #2266cc, #2266cc 20%, #2277ee 25%, #2277ee 45%, #2266cc 50%, #2266cc 70%, #2277ee 75%, #2277ee 95%, #2266cc 100%);
+  background-image: linear-gradient(-45deg, #2266cc, #2266cc 20%, #2277ee 25%, #2277ee 45%, #2266cc 50%, #2266cc 70%, #2277ee 75%, #2277ee 95%, #2266cc 100%);
   background-size: 12px 12px; }
 
 h2 {
@@ -75,14 +75,14 @@ form {
     border: none;
     padding: 4px 8px 2px;
     background-color: #2277ee;
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(100%, compact(#2277ee, #2266cc, false, false, false, false, false, false, false, false)));
-    background-image: -webkit-linear-gradient(top, compact(#2277ee, #2266cc, false, false, false, false, false, false, false, false));
-    background-image: -moz-linear-gradient(top, compact(#2277ee, #2266cc, false, false, false, false, false, false, false, false));
-    background-image: -ms-linear-gradient(top, compact(#2277ee, #2266cc, false, false, false, false, false, false, false, false));
-    background-image: -o-linear-gradient(top, compact(#2277ee, #2266cc, false, false, false, false, false, false, false, false));
-    background-image: linear-gradient(top, compact(#2277ee, #2266cc, false, false, false, false, false, false, false, false));
-    -webkit-box-shadow: compact(1px 1px 2px rgba(0, 0, 0, 0.25), false, false, false, false, false, false, false, false);
-    box-shadow: compact(1px 1px 2px rgba(0, 0, 0, 0.25), false, false, false, false, false, false, false, false); }
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2277ee), color-stop(100%, #2266cc));
+    background-image: -webkit-linear-gradient(top, #2277ee, #2266cc);
+    background-image: -moz-linear-gradient(top, #2277ee, #2266cc);
+    background-image: -ms-linear-gradient(top, #2277ee, #2266cc);
+    background-image: -o-linear-gradient(top, #2277ee, #2266cc);
+    background-image: linear-gradient(top, #2277ee, #2266cc);
+    -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25); }
 
 #history {
   margin-top: 16px; }
@@ -109,12 +109,12 @@ form {
 
 #new-game h2 {
   background-color: #ccbb44;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(100%, compact(#ccbb44, #ccbb44 20%, #ddcc33 25%, #ddcc33 45%, #ccbb44 50%, #ccbb44 70%, #ddcc33 75%, #ddcc33 95%, #ccbb44 100%, false)));
-  background-image: -webkit-linear-gradient(-45deg, compact(#ccbb44, #ccbb44 20%, #ddcc33 25%, #ddcc33 45%, #ccbb44 50%, #ccbb44 70%, #ddcc33 75%, #ddcc33 95%, #ccbb44 100%, false));
-  background-image: -moz-linear-gradient(-45deg, compact(#ccbb44, #ccbb44 20%, #ddcc33 25%, #ddcc33 45%, #ccbb44 50%, #ccbb44 70%, #ddcc33 75%, #ddcc33 95%, #ccbb44 100%, false));
-  background-image: -ms-linear-gradient(-45deg, compact(#ccbb44, #ccbb44 20%, #ddcc33 25%, #ddcc33 45%, #ccbb44 50%, #ccbb44 70%, #ddcc33 75%, #ddcc33 95%, #ccbb44 100%, false));
-  background-image: -o-linear-gradient(-45deg, compact(#ccbb44, #ccbb44 20%, #ddcc33 25%, #ddcc33 45%, #ccbb44 50%, #ccbb44 70%, #ddcc33 75%, #ddcc33 95%, #ccbb44 100%, false));
-  background-image: linear-gradient(-45deg, compact(#ccbb44, #ccbb44 20%, #ddcc33 25%, #ddcc33 45%, #ccbb44 50%, #ccbb44 70%, #ddcc33 75%, #ddcc33 95%, #ccbb44 100%, false));
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ccbb44), color-stop(20%, #ccbb44), color-stop(25%, #ddcc33), color-stop(45%, #ddcc33), color-stop(50%, #ccbb44), color-stop(70%, #ccbb44), color-stop(75%, #ddcc33), color-stop(95%, #ddcc33), color-stop(100%, #ccbb44));
+  background-image: -webkit-linear-gradient(-45deg, #ccbb44, #ccbb44 20%, #ddcc33 25%, #ddcc33 45%, #ccbb44 50%, #ccbb44 70%, #ddcc33 75%, #ddcc33 95%, #ccbb44 100%);
+  background-image: -moz-linear-gradient(-45deg, #ccbb44, #ccbb44 20%, #ddcc33 25%, #ddcc33 45%, #ccbb44 50%, #ccbb44 70%, #ddcc33 75%, #ddcc33 95%, #ccbb44 100%);
+  background-image: -ms-linear-gradient(-45deg, #ccbb44, #ccbb44 20%, #ddcc33 25%, #ddcc33 45%, #ccbb44 50%, #ccbb44 70%, #ddcc33 75%, #ddcc33 95%, #ccbb44 100%);
+  background-image: -o-linear-gradient(-45deg, #ccbb44, #ccbb44 20%, #ddcc33 25%, #ddcc33 45%, #ccbb44 50%, #ccbb44 70%, #ddcc33 75%, #ddcc33 95%, #ccbb44 100%);
+  background-image: linear-gradient(-45deg, #ccbb44, #ccbb44 20%, #ddcc33 25%, #ddcc33 45%, #ccbb44 50%, #ccbb44 70%, #ddcc33 75%, #ddcc33 95%, #ccbb44 100%);
   background-size: 12px 12px;
   margin-bottom: 0; }
   #new-game h2 a {
