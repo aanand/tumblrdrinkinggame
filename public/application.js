@@ -1,11 +1,37 @@
-function Game() {
+function Tumblr(options) {
+  this.getBlogInfo = function(domain, callback) {
+    this.request('blog/' + domain + '/info', callback);
+  }
+
+  this.request = function(subPath, callback) {
+    $.getJSON(
+      this.buildURL(subPath),
+      { 'api_key': options.apiKey },
+      this.handleResponse(callback)
+    );
+  }
+
+  this.buildURL = function(subPath) {
+    return 'http://api.tumblr.com/v2/' + subPath + '?callback=?';
+  }
+
+  this.handleResponse = function(callback) {
+    return function(json) {
+      if (json.meta.status < 200 || json.meta.status >= 300) {
+        return callback(json.meta);
+      } else {
+        return callback(null, json);
+      }
+    }
+  }
+}
+
+function Game(tumblr) {
   var game = this;
 
   this.status      = ko.observable('initial');
   this.mustExist   = ko.observable(false);
   this.history     = ko.observableArray();
-  this.lastResult  = ko.observable();
-  this.shouldDrink = ko.observable();
 
   this.checkNoun = function(noun) {
     if (noun == '') {
@@ -14,13 +40,31 @@ function Game() {
     }
 
     this.status('checking');
-    $.post('/', { noun: noun }, function(json) { game.handleResult(json) }, 'json');
-  },
+
+    var result = {noun: noun, domain: 'fuckyeah'+noun+'.tumblr.com'};
+
+    tumblr.getBlogInfo(result.domain, function(err, _) {
+      if (!err) {
+        result.exists = true;
+        game.handleResult(result);
+      } else if (err.status === 404) {
+        result.exists = false;
+        game.handleResult(result);
+      } else {
+        game.handleError(err);
+      }
+    });
+  }
 
   this.handleResult = function(result) {
     result.shouldDrink = (result.exists != this.mustExist());
     this.history.unshift(result);
     this.status('checked');
+  }
+
+  this.handleError = function(err) {
+    window.console && console.log('HTTP error %s: %s', err.status, err.msg);
+    this.status('error');
   }
 
   this.newGame = function(mustExist) {
@@ -78,6 +122,10 @@ function GameView(game) {
     return game.status() === "checking";
   });
 
+  this.error = ko.computed(function() {
+    return game.status() === "error";
+  });
+
   this.hasChecked = ko.computed(function() {
     return game.status() === "checked";
   });
@@ -105,7 +153,12 @@ function GameView(game) {
 }
 
 $(function() {
-  window.TDG = { view: new GameView(new Game()) };
+  window.TDG = {};
+
+  TDG.tumblr = new Tumblr({apiKey: 'xPUCfnbvVOt7F7fevsMROBXTQGOv0lOPdV0ZJNjIbkbdyg8yQp'});
+  TDG.game   = new Game(TDG.tumblr);
+  TDG.view   = new GameView(TDG.game);
+
   ko.applyBindings(TDG.view);
   $('#noun').focus();
 });
