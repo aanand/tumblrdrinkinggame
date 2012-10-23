@@ -1,0 +1,74 @@
+doctype html
+
+html
+  head
+    title Tumblr Drinking Game
+    meta name="viewport" content="width = device-width" 
+    link rel='stylesheet' href='css/stylesheet.css' 
+    script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.2/jquery.min.js' 
+    script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/knockout/2.1.0/knockout-min.js' 
+    script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js' 
+    script type='text/javascript' src='js/application.js' 
+
+  body
+    #container
+      #game
+        h1 Tumblr Drinking Game
+
+        form data-bind='submit: checkNoun' 
+          label
+            = "fuckyeah"
+            input#noun type='text' value='tigers' maxlength='24'
+            = ".tumblr.com"
+
+          | &nbsp;
+
+          button type='submit' Check
+
+        #message data-bind='visible: showMessage, attr: { class: messageClass }' 
+          span data-bind='if: isChecking' 
+            | Checking...
+
+          span data-bind='if: error' 
+            | Sorry, something went wrong.
+
+          span data-bind='if: hasChecked' 
+            span data-bind='if: lastResult().exists' 
+              span data-bind="html: lastResult().wrapInLink('It exists.')"
+
+            span data-bind='if: !lastResult().exists' 
+              span data-bind="html: 'It doesn&rsquo;t exist.'"
+
+            span data-bind='if: shouldDrinkNow()' 
+              | &nbsp;Drink!
+
+            span data-bind='if: !shouldDrinkNow()' 
+              | &nbsp;Do not drink.
+
+        #history data-bind='visible: showHistory' 
+          h2 Turn history
+
+          ul data-bind='foreach: history' 
+            li data-bind='attr: { class: cssClass }' 
+              .exists data-bind='text: existsLabel'
+              .label data-bind='html: wrapInLink(noun)' 
+
+        #new-game data-bind='visible: showNewGame' 
+          h2
+            a href='#' data-bind='click: function() { newGame(false) }' New game?
+
+      #credits data-bind='visible: showCredits' 
+        ' Made by
+        a href='http://aanandprasad.com' target='_blank' Aanand Prasad
+
+    javascript:
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-16551991-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+

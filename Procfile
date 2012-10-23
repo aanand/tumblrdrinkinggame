@@ -1,3 +1,3 @@
 sass:  bundle exec sass --require ./sass/bourbon/lib/bourbon.rb --watch sass:css
-haml:  bundle exec filewatcher haml/index.haml "echo 'regenerating index.html'; haml haml/index.haml index.html"
+slim:  bundle exec filewatcher slim/index.slim "echo 'regenerating index.html'; slimrb --pretty slim/index.slim index.html"
 serve: serve
